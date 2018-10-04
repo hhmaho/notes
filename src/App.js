@@ -1,10 +1,9 @@
 import React from 'react';
 import './App.css';
 import { connect } from 'react-redux'
-import { push } from 'redux-first-routing'
 import Link from './Link'
 
-const App = ({ pathname, gotoAbout }) => (
+const App = ({ pathname }) => (
   <div>
     <ul>
       <li><Link href="/" title="Home"/></li>
@@ -14,21 +13,25 @@ const App = ({ pathname, gotoAbout }) => (
   </div>
 )
 
+function renderBody(path) {
+  var tabs = path.split('/')
+  switch (tabs[1]) {
+    case '':
+      return <h1>this is my homepage</h1>
+    case 'current':
+      return <h1>Works in progress</h1>
+    case 'history':
+      return <h1>Allready done</h1>
+    default:
+      return <h1>Error</h1>
+  }
+}
+
 const mapStateToProps = state => ({
   pathname: state.router.pathname,
 })
 
 const mapDispatchToProps = dispatch => ({
-  gotoCurrent: () => dispatch(push("current")),
 }) 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-          /* <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a> */
-       
