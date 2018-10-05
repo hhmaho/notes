@@ -10,6 +10,7 @@ const App = ({ pathname }) => (
       <li><Link href="/current" title="In progress"/></li>
       <li><Link href="/history" title="Done"/></li>
     </ul>
+    {renderBody(pathname)}
   </div>
 )
 
